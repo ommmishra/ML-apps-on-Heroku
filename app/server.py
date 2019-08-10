@@ -1,18 +1,26 @@
 from fastai import *
 from fastai.vision import *
 
+path = Path("/home/omm/WorkStuff/herokuDeploy/ML-apps-on-Heroku/app/models")
+imgPath = Path("/home/omm/Downloads/wall-1564639504.png")
+
 learn = None
+def imagePredictorModel(path_to_export):
+	learn = load_learner(path_to_export)
+	print('yes')
+	return learn
 
-def imagePredictorModel(path_to_export, export_file_name):
-	learn = load_learner(path_to_export, export_file_name)
-	
-
-def predictCar(request):
-	img_data = await request.form()
-    img_bytes = await (img_data['file'].read())
-    img = open_image(BytesIO(img_bytes))
+def predictCar(learn, imgPath):
+	# img_data = await request.form()
+ #    img_bytes = await (img_data['file'].read())
+ #    img = open_image(BytesIO(img_bytes))
+    img = open_image(imgPath)
     prediction = learn.predict(img)
     return prediction 
 
-def homepage(request):
-	return render_template("index.html")
+# def homepage(request):
+	# return render_template("index.html")
+learn = imagePredictorModel(path)
+x = predictCar(learn, imgPath)
+print(x[2])
+print(type(x[2]))
