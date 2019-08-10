@@ -20,6 +20,7 @@ def predictCar(learn, imgPath):
 
 # def homepage(request):
 	# return render_template("index.html")
+defaults.device = torch.device('cpu')
 learn = imagePredictorModel(path)
 x = predictCar(learn, imgPath)
 print(x[2])
