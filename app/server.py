@@ -1,10 +1,16 @@
+from flask import Flask, request
 from fastai import *
 from fastai.vision import *
+from gevent.pywsgi import WSGIServer
+
+app = Flask(__name__)
 
 path = Path("/home/omm/WorkStuff/herokuDeploy/ML-apps-on-Heroku/app/models")
 imgPath = Path("/home/omm/Downloads/wall-1564639504.png")
+learn = load_learner(path_to_export)
+print('yes')
 
-learn = None
+
 def imagePredictorModel(path_to_export):
 	learn = load_learner(path_to_export)
 	print('yes')
@@ -20,8 +26,8 @@ def predictCar(learn, imgPath):
 
 # def homepage(request):
 	# return render_template("index.html")
-defaults.device = torch.device('cpu')
-learn = imagePredictorModel(path)
-x = predictCar(learn, imgPath)
-print(x[2])
-print(type(x[2]))
+# defaults.device = torch.device('cpu')
+# learn = imagePredictorModel(path)
+# x = predictCar(learn, imgPath)
+# print(x[2])
+# print(type(x[2]))
