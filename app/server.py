@@ -15,8 +15,8 @@ def predictCar(learn, imgPath):
  #    img_bytes = await (img_data['file'].read())
  #    img = open_image(BytesIO(img_bytes))
     img = open_image(imgPath)
-    prediction = learn.predict(img)
-    return prediction 
+    pred_class, pred_tensor, predictionSet = learn.predict(img)
+    return predictionSet 
 
 # def homepage(request):
 	# return render_template("index.html")
